@@ -1,0 +1,57 @@
+services:
+  api:
+    build:
+      context: .
+      target: production
+    container_name: yugioh-ddd-api
+    ports:
+      - "${PORT:-3001}:3001"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=${DB_NAME:-yugioh_db}
+      - DB_USER=${DB_USER:-yugioh_user}
+      - DB_PASSWORD=${DB_PASSWORD:-yugioh_password}
+      - PUBLIC_DIR=/usr/src/app/public
+    volumes:
+      - ../yugioh/public:/usr/src/app/public
+    restart: unless-stopped
+    networks:
+      - yugioh-ddd-network
+
+  db:
+    image: mysql:8.0
+    container_name: yugioh-ddd-db
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD:-root}
+      - MYSQL_DATABASE=${DB_NAME:-yugioh_db}
+      - MYSQL_USER=${DB_USER:-yugioh_user}
+      - MYSQL_PASSWORD=${DB_PASSWORD:-yugioh_password}
+    volumes:
+      - yugioh-ddd-db-data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u$$MYSQL_USER", "-p$$MYSQL_PASSWORD"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+    networks:
+      - yugioh-ddd-network
+
+networks:
+  yugioh-ddd-network:
+    name: yugioh-ddd-network
+    driver: bridge
+
+volumes:
+  yugioh-ddd-db-data:
+    driver: local
+
