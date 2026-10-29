@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Downloaded card images (persisted via Docker volume or external public directory)
+public/images/cards/normal/
+public/images/cards/small/
+public/images/cards/cropped/
+public/images/cards/normal_webp/
+public/images/cards/small_webp/
+public/images/cards/cropped_webp/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# TypeScript cache
+*.tsbuildinfo
+
+# IDE & OS
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
