@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 430" width="100%" height="100%">
+  <style>
+    .bg { fill: #0d1117; rx: 12px; stroke: #30363d; stroke-width: 1.5px; }
+    .header { fill: #161b22; }
+    .title { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; fill: #8b949e; font-weight: 600; }
+    .code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; }
+    .prompt { fill: #3fb950; font-weight: bold; }
+    .cmd { fill: #e6edf3; }
+    .flag { fill: #79c0ff; }
+    .str { fill: #a5d6ff; }
+    .key { fill: #7ee787; }
+    .num { fill: #d2a8ff; }
+    .comment { fill: #8b949e; }
+    .badge { fill: #1f6feb; rx: 4px; }
+    .badge-txt { font-family: 'SFMono-Regular', Consolas, monospace; font-size: 11px; fill: #ffffff; font-weight: bold; }
+    .step1 { opacity: 0; animation: fadeIn 8s infinite 0.3s; }
+    .step2 { opacity: 0; animation: fadeIn 8s infinite 1.4s; }
+    .step3 { opacity: 0; animation: fadeIn 8s infinite 2.6s; }
+    .step4 { opacity: 0; animation: fadeIn 8s infinite 4.0s; }
+    @keyframes fadeIn {
+      0%, 5% { opacity: 0; transform: translateY(3px); }
+      12%, 90% { opacity: 1; transform: translateY(0); }
+      96%, 100% { opacity: 0; }
+    }
+  </style>
+
+  <rect class="bg" x="2" y="2" width="916" height="426" rx="12"/>
+  <path class="header" d="M2 14 C2 7.37 7.37 2 14 2 L906 2 C912.63 2 918 7.37 918 14 L918 42 L2 42 Z"/>
+  <line x1="2" y1="42" x2="918" y2="42" stroke="#30363d" stroke-width="1"/>
+
+  <circle cx="24" cy="22" r="6" fill="#ff5f56"/>
+  <circle cx="44" cy="22" r="6" fill="#ffbd2e"/>
+  <circle cx="64" cy="22" r="6" fill="#27c93f"/>
+  <text class="title" x="460" y="26" text-anchor="middle">yugioh-ts-ddd — Hexagonal DDD API &amp; Multimodal CLIP (512-D) Search</text>
+
+  <g class="code step1">
+    <text x="26" y="74">
+      <tspan class="prompt">➜</tspan>
+      <tspan class="cmd"> curl </tspan>
+      <tspan class="flag">-X POST </tspan>
+      <tspan class="str">"http://localhost:3001/api/semantic-search"</tspan>
+      <tspan class="flag"> -d </tspan>
+      <tspan class="str">'{"query":"warrior with sword and armor","limit":3}'</tspan>
+    </text>
+  </g>
+
+  <g class="code step2">
+    <rect class="badge" x="26" y="88" width="112" height="20"/>
+    <text class="badge-txt" x="34" y="102">HTTP 200 OK</text>
+    <text class="comment" x="150" y="102">• ONNX CLIP ViT-B/32 (512-dim L2 Cosine Similarity) • 11.4 ms • 2,449 Embedded Cards</text>
+  </g>
+
+  <g class="code step3">
+    <text x="26" y="132" class="cmd">{</text>
+    <text x="44" y="152"><tspan class="key">"success"</tspan><tspan class="cmd">: </tspan><tspan class="num">true</tspan><tspan class="cmd">,</tspan></text>
+    <text x="44" y="172"><tspan class="key">"searchType"</tspan><tspan class="cmd">: </tspan><tspan class="str">"clip_embedding"</tspan><tspan class="cmd">,</tspan></text>
+    <text x="44" y="192"><tspan class="key">"results"</tspan><tspan class="cmd">: [</tspan></text>
+    <text x="64" y="214"><tspan class="cmd">{ </tspan><tspan class="key">"id"</tspan><tspan class="cmd">: </tspan><tspan class="num">871</tspan><tspan class="cmd">, </tspan><tspan class="key">"name"</tspan><tspan class="cmd">: </tspan><tspan class="str">"Headless Knight"</tspan><tspan class="cmd">,      </tspan><tspan class="key">"attribute"</tspan><tspan class="cmd">: </tspan><tspan class="str">"EARTH"</tspan><tspan class="cmd">, </tspan><tspan class="key">"similarityScore"</tspan><tspan class="cmd">: </tspan><tspan class="num">94</tspan><tspan class="cmd"> },</tspan></text>
+    <text x="64" y="236"><tspan class="cmd">{ </tspan><tspan class="key">"id"</tspan><tspan class="cmd">: </tspan><tspan class="num">2525</tspan><tspan class="cmd">, </tspan><tspan class="key">"name"</tspan><tspan class="cmd">: </tspan><tspan class="str">"Zombyra the Dark"</tspan><tspan class="cmd">,     </tspan><tspan class="key">"attribute"</tspan><tspan class="cmd">: </tspan><tspan class="str">"DARK"</tspan><tspan class="cmd">,  </tspan><tspan class="key">"similarityScore"</tspan><tspan class="cmd">: </tspan><tspan class="num">93</tspan><tspan class="cmd"> },</tspan></text>
+    <text x="64" y="258"><tspan class="cmd">{ </tspan><tspan class="key">"id"</tspan><tspan class="cmd">: </tspan><tspan class="num">392</tspan><tspan class="cmd">, </tspan><tspan class="key">"name"</tspan><tspan class="cmd">: </tspan><tspan class="str">"Command Knight"</tspan><tspan class="cmd">,       </tspan><tspan class="key">"attribute"</tspan><tspan class="cmd">: </tspan><tspan class="str">"FIRE"</tspan><tspan class="cmd">,  </tspan><tspan class="key">"similarityScore"</tspan><tspan class="cmd">: </tspan><tspan class="num">92</tspan><tspan class="cmd"> }</tspan></text>
+    <text x="44" y="278" class="cmd">]</text>
+    <text x="26" y="298" class="cmd">}</text>
+  </g>
+
+  <g class="code step4">
+    <line x1="26" y1="316" x2="894" y2="316" stroke="#21262d" stroke-width="1"/>
+    <text x="26" y="340">
+      <tspan class="prompt">➜</tspan>
+      <tspan class="cmd"> npm test </tspan>
+      <tspan class="comment"># 7 Bounded Contexts: Catalog • Obtention • LimitList • Duelist • GameStats • Media • AISearch</tspan>
+    </text>
+    <text x="26" y="366">
+      <tspan fill="#3fb950" font-weight="bold">PASS</tspan>
+      <tspan class="cmd"> Domain &amp; Application Use Cases  •  </tspan>
+      <tspan fill="#3fb950" font-weight="bold">PASS</tspan>
+      <tspan class="cmd"> CLIP 512-D Vector Search  •  </tspan>
+      <tspan fill="#3fb950" font-weight="bold">57 passed</tspan>
+      <tspan class="comment"> (57 total)</tspan>
+    </text>
+    <text x="26" y="392">
+      <tspan class="comment">Interactive Visual Lab Ready → </tspan>
+      <tspan class="flag">http://localhost:3001/visual-search.html</tspan>
+    </text>
+  </g>
+</svg>
